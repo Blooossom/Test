@@ -5,6 +5,7 @@ import com.example.climbingassemble.post.entity.Post;
 import com.example.climbingassemble.user.entity.User;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
@@ -14,6 +15,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@Getter
 public class Comment {
 
     @Id
@@ -34,7 +36,7 @@ public class Comment {
     private User user;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "title")
+    @JoinColumn(name = "post_id")
     private Post post;
 
 
