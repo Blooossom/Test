@@ -3,6 +3,8 @@ package com.example.climbingassemble.page.controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpSession;
+
 @RestController
 public class PageController {
 
@@ -25,5 +27,15 @@ public class PageController {
     @GetMapping("/post")
     public String goPost(){
         return "postlist";
+    }
+
+    @GetMapping("/post/write")
+    public String writePost(){
+        return "writepost";
+    }
+
+    @GetMapping("/post/modify/{post_id}")
+    public String modifyPost(){
+        return "modifypost";
     }
 }

@@ -1,12 +1,16 @@
 package com.example.climbingassemble.user.entity;
 
 
+import com.example.climbingassemble.comment.entity.Comment;
+import com.example.climbingassemble.post.dto.PostResponse;
+import com.example.climbingassemble.post.entity.Post;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -40,6 +44,12 @@ public class User {
     private String indate;
 
 
+    @OneToMany(fetch = FetchType.LAZY)
+    @OrderBy("created_date DESC")
+    private List<Post> posts;
 
+    @OneToMany(fetch = FetchType.LAZY)
+    @OrderBy("created_date DESC")
+    private List<Comment> comments;
 
 }

@@ -12,7 +12,7 @@ import javax.validation.constraints.Pattern;
 @Setter
 @ToString
 @Builder
-public class UserReq {
+public class UserRequest {
 
     @NotBlank(message = "아이디는 필수 입력 사항입니다.")
     private String userid;

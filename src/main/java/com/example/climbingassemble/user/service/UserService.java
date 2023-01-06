@@ -1,6 +1,6 @@
 package com.example.climbingassemble.user.service;
 
-import com.example.climbingassemble.user.dto.UserReq;
+import com.example.climbingassemble.user.dto.UserRequest;
 import org.springframework.validation.Errors;
 
 import java.util.Map;
@@ -9,11 +9,11 @@ public interface UserService {
 
 
     Map<String, String> validateHandling(Errors errors);
-    void checkUserIdDuplication(UserReq req);
-    void checkNickNameDuplication(UserReq req);
-    void checkEmailDuplication(UserReq req);
+    void checkUserIdDuplication(UserRequest req);
+    void checkNickNameDuplication(UserRequest req);
+    void checkEmailDuplication(UserRequest req);
 
-    String signUp(UserReq req);
+    String signUp(UserRequest req);
 
-    String login(UserReq req);
+    String login(UserRequest req);
 }

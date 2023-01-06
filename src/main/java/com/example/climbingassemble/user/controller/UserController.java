@@ -1,12 +1,11 @@
 package com.example.climbingassemble.user.controller;
 
 
-import com.example.climbingassemble.user.dto.UserReq;
+import com.example.climbingassemble.user.dto.UserRequest;
 import com.example.climbingassemble.user.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,7 +21,7 @@ public class UserController {
     private final UserService service;
 
     @PostMapping("/login")
-    public String login(UserReq req, HttpSession session){
+    public String login(UserRequest req, HttpSession session){
         String result = service.login(req);
         if (result.equals("success")) {
             session.setAttribute("userid", req.getUserid());
@@ -32,7 +31,7 @@ public class UserController {
 
     //회원가입
     @PostMapping("/signup")
-    public String signUp(@Valid UserReq req, Errors errors, Model model){
+    public String signUp(@Valid UserRequest req, Errors errors, Model model){
         try {
             service.checkUserIdDuplication(req);
             service.checkNickNameDuplication(req);

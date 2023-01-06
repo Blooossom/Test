@@ -5,8 +5,7 @@ import com.example.climbingassemble.admin.entity.Admin;
 import com.example.climbingassemble.admin.repository.AdminRepository;
 import com.example.climbingassemble.admin.service.AdminService;
 import com.example.climbingassemble.post.entity.Post;
-import com.example.climbingassemble.user.dto.UserRes;
-import com.example.climbingassemble.user.entity.User;
+import com.example.climbingassemble.user.dto.UserResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -33,7 +32,7 @@ public class AdminServiceImpl implements AdminService {
     }
 
     @Override
-    public List<UserRes> viewUserList() {
+    public List<UserResponse> viewUserList() {
         return null;
     }
 

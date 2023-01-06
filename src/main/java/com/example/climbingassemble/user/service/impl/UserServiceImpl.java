@@ -1,6 +1,6 @@
 package com.example.climbingassemble.user.service.impl;
 
-import com.example.climbingassemble.user.dto.UserReq;
+import com.example.climbingassemble.user.dto.UserRequest;
 import com.example.climbingassemble.user.entity.User;
 import com.example.climbingassemble.user.repository.UserRepository;
 import com.example.climbingassemble.user.service.UserService;
@@ -21,7 +21,7 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public String signUp(UserReq req) {
+    public String signUp(UserRequest req) {
         try {
             repo.save(req.toEntity());
         } catch (Exception err) {
@@ -32,7 +32,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public String login(UserReq req) {
+    public String login(UserRequest req) {
         User user = repo.findByUseridAndPassword(req.getUserid(), req.getPassword())
                 .orElse(null);
         if (user != null) {
@@ -57,7 +57,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional(readOnly = true)
-    public void checkUserIdDuplication(UserReq req) {
+    public void checkUserIdDuplication(UserRequest req) {
         boolean userIdDuplication = repo.existsByUserid(req.toEntity().getUserid());
         if (userIdDuplication) {
             throw new IllegalStateException("이미 존재하는 아이디입니다.");
@@ -66,7 +66,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional(readOnly = true)
-    public void checkNickNameDuplication(UserReq req) {
+    public void checkNickNameDuplication(UserRequest req) {
         boolean nicknameDuplication = repo.existsByNickname(req.toEntity().getNickname());
         if (nicknameDuplication) {
             throw new IllegalStateException("이미 존재하는 닉네임입니다.");
@@ -75,7 +75,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional(readOnly = true)
-    public void checkEmailDuplication(UserReq req) {
+    public void checkEmailDuplication(UserRequest req) {
         boolean emailDuplication = repo.existsByEmail(req.toEntity().getEmail());
         if (emailDuplication) {
             throw new IllegalStateException("이미 존재하는 이메일입니다.");
