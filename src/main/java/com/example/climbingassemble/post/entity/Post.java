@@ -20,7 +20,7 @@ public class Post {
     @Id
     @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long post_id;
 
     @Column
     private String title;
@@ -37,7 +37,7 @@ public class Post {
     @Column
     private String modified_date;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "nickname")
     private User user;
 

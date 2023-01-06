@@ -4,12 +4,16 @@ package com.example.climbingassemble.user.controller;
 import com.example.climbingassemble.user.dto.UserReq;
 import com.example.climbingassemble.user.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
+import java.util.Map;
 
 @RestController
 @RequiredArgsConstructor
@@ -26,9 +30,29 @@ public class UserController {
         return result;
     }
 
+    //회원가입
     @PostMapping("/signup")
-    public String signUp(UserReq req){
-        return service.signUp(req);
+    public String signUp(@Valid UserReq req, Errors errors, Model model){
+        try {
+            service.checkUserIdDuplication(req);
+            service.checkNickNameDuplication(req);
+            service.checkEmailDuplication(req);
+        } catch (Exception err) {
+            err.printStackTrace();
+            return "signup";
+        }
+        if (errors.hasErrors()) {
+
+            model.addAttribute("req", req);
+
+            Map<String, String> validatorResult = service.validateHandling(errors);
+            for (String key : validatorResult.keySet()) {
+                model.addAttribute(key, validatorResult.get(key));
+            }
+            return "signup";
+        }
+        service.signUp(req);
+        return "login";
     }
 
     @GetMapping("/logout")
