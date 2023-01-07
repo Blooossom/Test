@@ -5,6 +5,8 @@ import com.example.climbingassemble.post.dto.PostRequest;
 import com.example.climbingassemble.post.dto.PostResponse;
 import com.example.climbingassemble.post.entity.Post;
 import com.example.climbingassemble.post.service.PostService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,31 +18,31 @@ public class PostController {
 
     private final PostService service;
 
-    //게시글 전체 조회
+    @ApiOperation(value = "게시글 전체 조회", notes = "게시글 전부 가져오는 API")
     @GetMapping("/post")
     public List<PostResponse> viewPostList(){
        return service.selectPostList();
     }
 
-    //작성자 검색
-    @GetMapping("/post/search?keyword={nickname}")
+    @ApiOperation(value = "게시글 검색", notes = "키워드에 따라 게시글을 검색하는 API")
+    @GetMapping("/post/search?keyword={keyword}")
     public List<PostResponse> viewPostListByNickName(@PathVariable String nickname) {
         return service.selectPostByNickName(nickname);
     }
 
-    //게시글 등록
+    @ApiOperation(value = "게시글 작성", notes = "게시글을 작성하는 API")
     @PostMapping("/post")
     public String writePost(Post post) {
         return null;
     }
 
-    //게시글 삭제
+    @ApiOperation(value = "게시글 삭제", notes = "게시글을 삭제하는 API")
     @DeleteMapping("/post")
     public String deletePost(Post post){
         return null;
     }
 
-    //게시글 수정
+    @ApiOperation(value = "게시글 수정", notes = "게시글을 수정하는 API")
     @PutMapping("/post")
     public String modifiedPost(Post post){
         return null;
