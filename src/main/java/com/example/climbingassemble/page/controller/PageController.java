@@ -20,12 +20,12 @@ public class PageController {
         return "index";
     }
     @ApiOperation(value = "회원 가입 이동", notes = "회원가입 페이지")
-    @GetMapping("/signUp")
+    @GetMapping("/goSignUp")
     public String signup(){
         return "signup";
     }
     @ApiOperation(value = "로그인 이동", notes = "로그인 페이지")
-    @GetMapping("/login")
+    @GetMapping("/goLogin")
     public String login(){
         return "login";
     }
